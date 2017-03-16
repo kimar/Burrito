@@ -16,9 +16,9 @@ let json: [String: Any?] = [
 let himself = Marcus(
 	name: json.unwrap("name") { "Unknown" }, // -> Marcus
 	age: json.unwrap("age") { -1 }, // -> 31
-	github: json.unwrap("github") { 
-	    URL("https://blog.kida.io")!
-	} // -> https://blog.kida.io
+	github: json.unwrap("github") {
+	    URL(string: "https://github.com/kimar")!
+	} // -> https://github.com/kimar
 )
 ```
 
