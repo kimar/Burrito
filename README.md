@@ -1,12 +1,12 @@
-## Burrito
+# Burrito
 
 ##### Type-Safe unwraps with default value.
 
 Implicitly unwrap optional values and use default values whenever needed.
 
-### Installation
+## Installation
 
-##### Carthage
+### Carthage
 
 Add the following to your `Cartfile`.
 
@@ -14,7 +14,7 @@ Add the following to your `Cartfile`.
 github "kimar/Burrito"
 ```
 
-### Quickstart
+## Quickstart
 
 Burrito helps you to get your 🌯 together and unwrap concisely and in a more readable fashion. 
 
@@ -79,7 +79,7 @@ let person = Person(
 As you can see, because `github` is non-existent in the payload, when trying to unwrap it a default value will be used. This value can be returned in the closure.
 
 
-### Advanced Usage
+## Advanced Usage
 
 By telling *Burrito* what type you'd like to unwrap and specify a default closure returning the value you'd expect if the object can't be unwrapped or casted:
 
