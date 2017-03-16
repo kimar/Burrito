@@ -9,11 +9,11 @@ class Burrito<T> {
 }
 
 public extension Dictionary where Key: Hashable {
-    func unwrap<T>(forKey key: Key) -> T? {
+    func unwrap<T>(_ key: Key) -> T? {
         return self[key] as? T
     }
     
-    func unwrap<T>(forKey key: Key, onOptional: (_ key: Key) -> T) -> T {
-        return self[key] as? T ?? onOptional(key)
+    func unwrap<T>(_ key: Key, onOptional: () -> T) -> T {
+        return self[key] as? T ?? onOptional()
     }
 }
