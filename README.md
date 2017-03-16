@@ -12,7 +12,7 @@ Given you're about to instantiate the following struct:
 
 ```swift
 struct Person {
-    let name: String
+	let name: String
 }
 ```
 
@@ -20,7 +20,7 @@ With pure Swift you're likely to see this code in you App:
 
 ```swift
 let person = Person(
-    name: dict["name"] as? String ?? "Johnny Appleseed"
+	name: dict["name"] as? String ?? "Johnny Appleseed"
 )
 ```
 
