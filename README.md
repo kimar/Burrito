@@ -92,16 +92,3 @@ let value = Burrito<String>.unwrap(myString) {	return "This is not the String yo
 
 print(value) // -> "This is the String you're looking for…"
 ```
-
-**This is expecially helpful when e.g. unwrapping values from JSON payloads (everybody loves JSON ❤️) Burrito even provides you with an Extension on Dictionary e.g.:**
-
-```swift
-let json: [String: Any?] = [
-	"age": 31
-]
-let myObject = Object(
-	name: json.unwrap("name") { "Unknown" } // -> "Unknown"
-  	age: json.unwrap("age") { -1 } // -> 31
-)
-```
-
