@@ -1,6 +1,7 @@
 import Foundation
 
-class Burrito<T> {
+public typealias 🌯<T> = Burrito<T>
+public class Burrito<T> {
     static func unwrap(_ object: Any) -> T? {
         return object as? T
     }
@@ -10,22 +11,33 @@ class Burrito<T> {
     }
 }
 
+// MARK: - Extensions
 public extension Dictionary where Key: Hashable {
-    func unwrap<T>(_ key: Key) -> T? {
+    func either<T>(_ key: Key) -> T? {
         return self[key] as? T
     }
     
-    func unwrap<T>(_ key: Key, onOptional: () -> T) -> T {
-        return self.unwrap(key) ?? onOptional()
+    func either<T>(_ key: Key, onOptional: () -> T) -> T {
+        return either(key) ?? onOptional()
     }
 }
 
 public extension String {
-    func unwrapUrl() -> URL? {
+    func eitherUrl() -> URL? {
         return URL(string: self)
     }
     
-    func unwrapUrl(_ onOptional: () -> URL) -> URL {
-        return self.unwrapUrl() ?? onOptional()
+    func eitherUrl(_ onOptional: () -> URL) -> URL {
+        return eitherUrl() ?? onOptional()
     }
+}
+
+// MARK: - Operators
+infix operator <~>
+public func <~><T>(lhs: T?, rhs: () -> T) -> T {
+    return lhs ?? rhs()
+}
+
+public func <~><T>(lhs: T?, rhs: T) -> T {
+    return lhs ?? rhs
 }

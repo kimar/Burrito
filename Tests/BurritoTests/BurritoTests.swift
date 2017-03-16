@@ -8,47 +8,47 @@ class BurritoTests: XCTestCase {
     
     func testDictionaryNonOptionalString() {
         XCTAssertEqual(
-            strings.unwrap("nonOptional"), "Hello, World!"
+            strings.either("nonOptional"), "Hello, World!"
         )
     }
     
     func testDictionaryOptionalString() {
         XCTAssertNil(
-            strings.unwrap("optional")
+            strings.either("optional")
         )
     }
     
-    func testDictionaryOptionalStringWithFallback() {
+    func testDictionaryOptionalStringWithDefault() {
         XCTAssertEqual(
-            strings.unwrap("optional") { "👋" }, "👋"
+            strings.either("optional") { "👋" }, "👋"
         )
     }
     
-    func testStringUnwrapIntWithoutFallback() {
+    func testStringUnwrapIntWithoutDefault() {
         XCTAssertNil(
             Burrito<String>.unwrap(0)
         )
     }
     
-    func testStringUnwrapStringWithoutFallback() {
+    func testStringUnwrapStringWithoutDefault() {
         XCTAssertEqual(
             Burrito<String>.unwrap("Hello, World!"), "Hello, World!"
         )
     }
     
-    func testIntUnwrapIntWithoutFallback() {
+    func testIntUnwrapIntWithoutDefault() {
         XCTAssertEqual(
             Burrito<Int>.unwrap(0), 0
         )
     }
     
-    func testStringUnwrapIntWithFallback() {
+    func testStringUnwrapIntWithDefault() {
         XCTAssertEqual(
             Burrito<String>.unwrap(0) { "Hello, World!" }, "Hello, World!"
         )
     }
     
-    func testIntUnwrapStringWithFallback() {
+    func testIntUnwrapStringWithDefault() {
         XCTAssertEqual(
             Burrito<Int>.unwrap("Hello, World!") { 0 }, 0
         )
@@ -56,13 +56,13 @@ class BurritoTests: XCTestCase {
     
     func testUrlUnwrapUrl() {
         XCTAssertEqual(
-            "https://github.com".unwrapUrl(), URL(string: "https://github.com")!
+            "https://github.com".eitherUrl(), URL(string: "https://github.com")!
         )
     }
     
-    func testUrlUnwrapStringWithFallback() {
+    func testUrlUnwrapStringWithDefault() {
         XCTAssertEqual(
-            "Hello, World!".unwrapUrl { URL(string: "https://github.com")! }, URL(string: "https://github.com")!
+            "Hello, World!".eitherUrl { URL(string: "https://github.com")! }, URL(string: "https://github.com")!
         )
     }
     
@@ -81,9 +81,9 @@ class BurritoTests: XCTestCase {
         ]
         
         let himself = Marcus(
-            name: json.unwrap("name") { "Unknown" }, // -> Marcus
-            age: json.unwrap("age") { -1 }, // -> 31
-            github: json.unwrap("github") {
+            name: json.either("name") <~> { "Unknown" }, // -> Marcus
+            age: json.either("age") <~> -1, // -> 31
+            github: json.either("github") {
                 URL(string: "https://github.com/kimar")!
             } // -> https://github.com/kimar
         )
@@ -92,18 +92,18 @@ class BurritoTests: XCTestCase {
         XCTAssertEqual(himself.age, 31)
         XCTAssertEqual(himself.github, URL(string: "https://github.com/kimar")!)
     }
-    
+
     static var allTests : [(String, (BurritoTests) -> () throws -> Void)] {
         return [
             ("testNonOptionalString", testDictionaryNonOptionalString),
             ("testOptionalString", testDictionaryOptionalString),
-            ("testDictionaryOptionalStringWithFallback", testDictionaryOptionalStringWithFallback),
-            ("testStringUnwrapIntWithoutFallback", testStringUnwrapIntWithoutFallback),
-            ("testStringUnwrapStringWithoutFallback", testStringUnwrapStringWithoutFallback),
-            ("testIntUnwrapIntWithoutFallback", testIntUnwrapIntWithoutFallback),
-            ("testStringUnwrapIntWithFallback", testStringUnwrapIntWithFallback),
-            ("testIntUnwrapStringWithFallback", testIntUnwrapStringWithFallback),
-
+            ("testDictionaryOptionalStringWithDefault", testDictionaryOptionalStringWithDefault),
+            ("testStringUnwrapIntWithoutDefault", testStringUnwrapIntWithoutDefault),
+            ("testStringUnwrapStringWithoutDefault", testStringUnwrapStringWithoutDefault),
+            ("testIntUnwrapIntWithoutDefault", testIntUnwrapIntWithoutDefault),
+            ("testStringUnwrapIntWithDefault", testStringUnwrapIntWithDefault),
+            ("testIntUnwrapStringWithDefault", testIntUnwrapStringWithDefault),
+            ("testPayloadUnwrap", testPayloadUnwrap),
         ]
     }
 }
