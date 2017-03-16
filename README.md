@@ -4,6 +4,16 @@
 
 Implicitly unwrap optional values and use default values whenever needed.
 
+### Installation
+
+##### Carthage
+
+Add the following to your `Cartfile`.
+
+```swift
+github "kimar/Burrito"
+```
+
 ### Quickstart
 
 Burrito helps you to get your 🌯 together and unwrap concisely and in a more readable fashion. 
