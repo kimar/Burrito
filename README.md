@@ -77,7 +77,7 @@ By telling *Burrito* what type you'd like to unwrap and specify a default closur
 
 ```swift
 let value = Burrito<String>.unwrap(0) {
-    return "This is not the String you're looking for!"
+	return "This is not the String you're looking for!"
 }
 
 print(value) // -> "This is not the String you're looking for!"
@@ -87,7 +87,8 @@ print(value) // -> "This is not the String you're looking for!"
 
 ```swift
 let myString = "This is the String you're looking for…"
-let value = Burrito<String>.unwrap(myString) {	return "This is not the String you're looking for!"
+let value = Burrito<String>.unwrap(myString) {
+	return "This is not the String you're looking for!"
 }
 
 print(value) // -> "This is the String you're looking for…"
