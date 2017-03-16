@@ -2,7 +2,32 @@
 
 ##### Type-Safe unwraps with fallback.
 
-By telling `Burrito` what type you'd like to unwrap and specify a fallback closure returning the value you'd expect if the object can't be unwrapped or casted:
+### Quickstart
+
+Unwrapping dictionaries shouldn't be painful, let *Burrito* help you unwrap:
+
+```swift
+let json: [String: Any?] = [
+	"name": Optional("Marcus"),
+	"age": 31,
+	"blog": URL(string: "https://blog.kida.io")!
+]
+
+let himself = Marcus(
+	name: json.unwrap("name") { "Unknown" }, // -> Marcus
+	age: json.unwrap("age") { -1 }, // -> 31
+	github: json.unwrap("github") { 
+	    URL("https://blog.kida.io")!
+	} // -> https://blog.kida.io
+)
+```
+
+As you can see, because `github` is non-existent in the payload, when trying to unwrap it a default value will be used. This value can be returned in the closure.
+
+
+### More
+
+By telling *Burrito* what type you'd like to unwrap and specify a fallback closure returning the value you'd expect if the object can't be unwrapped or casted:
 
 **Trying to cast an `Int` to a `String` won't work e.g.:**
 
