@@ -1,4 +1,4 @@
-# Burrito
+# 🌯 Burrito
 
 ##### Type-Safe unwraps with default value.
 
