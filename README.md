@@ -61,7 +61,7 @@ let person = Person(
 	name: json.unwrap("name") { "Unknown" }, // -> Marcus
 	age: json.unwrap("age") { -1 }, // -> 31
 	github: json.unwrap("github") {
-	    URL(string: "https://github.com/kimar")!
+		URL(string: "https://github.com/kimar")!
 	} // -> https://github.com/kimar
 )
 ```
@@ -87,8 +87,7 @@ print(value) // -> "This is not the String you're looking for!"
 
 ```swift
 let myString = "This is the String you're looking for…"
-let value = Burrito<String>.unwrap(myString) {
-    return "This is not the String you're looking for!"
+let value = Burrito<String>.unwrap(myString) {	return "This is not the String you're looking for!"
 }
 
 print(value) // -> "This is the String you're looking for…"
@@ -101,8 +100,8 @@ let json: [String: Any?] = [
 	"age": 31
 ]
 let myObject = Object(
-  name: json.unwrap("name") { "Unknown" } // -> "Unknown"
-  age: json.unwrap("age") { -1 } // -> 31
+	name: json.unwrap("name") { "Unknown" } // -> "Unknown"
+  	age: json.unwrap("age") { -1 } // -> 31
 )
 ```
 
