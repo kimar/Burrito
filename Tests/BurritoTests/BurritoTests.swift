@@ -6,15 +6,21 @@ class BurritoTests: XCTestCase {
         "nonOptional": "Hello, World!"
     ]
     
-    func testNonOptionalString() {
+    func testDictionaryNonOptionalString() {
         XCTAssertEqual(
-            strings.unwrap(forKey: "nonOptional"), "Hello, World!"
+            strings.unwrap("nonOptional"), "Hello, World!"
         )
     }
     
-    func testOptionalString() {
+    func testDictionaryOptionalString() {
         XCTAssertNil(
-            strings.unwrap(forKey: "optional")
+            strings.unwrap("optional")
+        )
+    }
+    
+    func testDictionaryOptionalStringWithFallback() {
+        XCTAssertEqual(
+            strings.unwrap("optional") { "👋" }, "👋"
         )
     }
     
@@ -50,8 +56,15 @@ class BurritoTests: XCTestCase {
     
     static var allTests : [(String, (BurritoTests) -> () throws -> Void)] {
         return [
-            ("testNonOptionalString", testNonOptionalString),
-            ("testOptionalString", testOptionalString),
+            ("testNonOptionalString", testDictionaryNonOptionalString),
+            ("testOptionalString", testDictionaryOptionalString),
+            ("testDictionaryOptionalStringWithFallback", testDictionaryOptionalStringWithFallback),
+            ("testStringUnwrapIntWithoutFallback", testStringUnwrapIntWithoutFallback),
+            ("testStringUnwrapStringWithoutFallback", testStringUnwrapStringWithoutFallback),
+            ("testIntUnwrapIntWithoutFallback", testIntUnwrapIntWithoutFallback),
+            ("testStringUnwrapIntWithFallback", testStringUnwrapIntWithFallback),
+            ("testIntUnwrapStringWithFallback", testIntUnwrapStringWithFallback),
+
         ]
     }
 }
