@@ -12,7 +12,7 @@ public class Burrito<T> {
 }
 
 // MARK: - Extensions
-public extension Dictionary where Key: Hashable {
+public extension Dictionary {
     func either<T>(_ key: Key) -> T? {
         return self[key] as? T
     }
